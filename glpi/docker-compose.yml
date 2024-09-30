@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+  glpi:
+    image: diouxx/glpi
+    container_name: glpi
+    # hostname: glpi
+    restart: unless-stopped
+    environment:
+      - TIMEZONE=America/Peru
+    ports:
+      - "8091:80"
+    volumes:
+      - ./glpi/:/var/www/html/glpi

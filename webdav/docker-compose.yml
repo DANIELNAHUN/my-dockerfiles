@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  webdav:
+    image: bytemark/webdav
+    container_name: webdav
+    environment:
+      - AUTH_TYPE=Basic
+      - USERNAME=dcalcina
+      - PASSWORD=101299
+    ports:
+      - "8086:80"
+    volumes:
+      - ./data:/var/lib/dav

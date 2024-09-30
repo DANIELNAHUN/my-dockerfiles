@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "101299"
+      MYSQL_USER: "dcalcina"
+      MYSQL_PASSWORD: "101299"
+      MYSQL_DATABASE: "etl_cc"
+    ports:
+      - '3306:3306'
+    volumes:
+      - mydb:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=mysql
+    expose:
+      - 80
+    ports:
+      - 8081:80
+    depends_on:
+      - mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: unless-stopped
+    environment:
+       WORDPRESS_DB_HOST: mysql:3306
+       WORDPRESS_DB_NAME: wordpress
+       WORDPRESS_DB_USER: "root"
+       WORDPRESS_DB_PASSWORD: "101299"
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+volumes:
+  mydb:

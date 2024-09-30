@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  front-nameapp:
+    build: .
+    container_name: front-nameapp
+    ports:
+      - 8084:80 # 80 es el puerto nginx
