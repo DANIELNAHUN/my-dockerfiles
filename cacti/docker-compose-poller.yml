@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  cacti-poller:
+    image: "smcline06/cacti"
+    container_name: cacti_poller
+    domainname: examplepoller.com
+    hostname: cactipoller
+    ports:
+      - "8089:80"
+      - "8443:443"
+    environment:
+      - DB_NAME=cacti_poller
+      - DB_USER=cactipolleruser
+      - DB_PASS=cactipollerpassword
+      - DB_HOST="192.168.18.231"
+      - DB_PORT=3306
+      - RDB_NAME=cacti_master
+      - RDB_USER=cactiuser
+      - RDB_PASS=cactipassword
+      - RDB_HOST="192.168.18.231"
+      - RDB_PORT=3306
+      - DB_ROOT_PASS=101299
+      - REMOTE_POLLER=1
+      - INITIALIZE_DB=1
+      - TZ=America/Los_Angeles
+    volumes:
+      - cacti-poller-data:/cacti
+      - cacti-poller-spine:/spine
+      - cacti-poller-backups:/backups
+
+volumes:
+  cacti-poller-data:
+  cacti-poller-spine:
+  cacti-poller-backups:
