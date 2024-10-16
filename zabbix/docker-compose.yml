@@ -1,6 +1,31 @@
 version: '3.8'
 
 services:
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "c4bl3cl5b"
+    ports:
+      - '3306:3306'
+    volumes:
+      - mydb:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=mysql
+    expose:
+      - 80
+    ports:
+      - 8081:80
+    depends_on:
+      - mysql
+
   zabbix-java-gateway:
     image: zabbix/zabbix-java-gateway:alpine-7.0-latest
     container_name: zabbix-java-gateway
@@ -9,12 +34,14 @@ services:
   zabbix-server-mysql:
     image: zabbix/zabbix-server-mysql:alpine-7.0-latest
     container_name: zabbix-server-mysql
+    depends_on:
+      - mysql
     environment:
-      DB_SERVER_HOST: "0.0.0.0"
+      DB_SERVER_HOST: mysql
       MYSQL_DATABASE: "zabbix"
       MYSQL_USER: "root"
-      MYSQL_PASSWORD: "101299"
-      MYSQL_ROOT_PASSWORD: "101299"
+      MYSQL_PASSWORD: "c4bl3cl5b"
+      MYSQL_ROOT_PASSWORD: "c4bl3cl5b"
       ZBX_JAVAGATEWAY: "zabbix-java-gateway"
     ports:
       - "10051:10051"
@@ -25,11 +52,14 @@ services:
     container_name: zabbix-web-nginx-mysql
     environment:
       ZBX_SERVER_HOST: "zabbix-server-mysql"
-      DB_SERVER_HOST: "0.0.0.0"
+      DB_SERVER_HOST: mysql
       MYSQL_DATABASE: "zabbix"
       MYSQL_USER: "root"
-      MYSQL_PASSWORD: "101299"
-      MYSQL_ROOT_PASSWORD: "101299"
+      MYSQL_PASSWORD: "c4bl3cl5b"
+      MYSQL_ROOT_PASSWORD: "c4bl3cl5b"
     ports:
-      - "9000:8080"
+      - "8080:8080"
     restart: unless-stopped
+  
+volumes:
+  mydb:
