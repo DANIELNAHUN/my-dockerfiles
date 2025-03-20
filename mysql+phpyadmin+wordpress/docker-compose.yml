@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: "101299"
       MYSQL_USER: "dcalcina"
       MYSQL_PASSWORD: "101299"
-      MYSQL_DATABASE: "etl_cc"
+      MYSQL_DATABASE: "example_dc"
     command:
       - mysqld
     ports:
