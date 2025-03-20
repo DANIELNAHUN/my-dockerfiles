@@ -19,6 +19,7 @@ services:
     container_name: pgadmin
     ports:
       - 15433:80
+    user: '$UID:$GID'
     env_file:
       - .env
     depends_on:
