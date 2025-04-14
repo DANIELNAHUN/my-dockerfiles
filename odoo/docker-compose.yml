@@ -9,8 +9,6 @@ services:
       - .env
     ports:
       - "8069:8069"
-    networks:
-      -  postgres-network
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
