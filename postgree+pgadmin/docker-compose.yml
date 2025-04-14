@@ -4,6 +4,7 @@ services:
   pgdb:
     image: 'postgres:latest'
     container_name: postgres
+    restart: unless-stopped
     ports:
       - 15432:5432
     env_file:
@@ -12,11 +13,12 @@ services:
       - postgres-network
     volumes:
       - ${PWD}/db-data/:/var/lib/postgresql/data/
-      - ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ${PWD}/init.sql/:/docker-entrypoint-initdb.d/init.sql
   
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
+    restart: unless-stopped
     ports:
       - 15433:80
     user: '$UID:$GID'
