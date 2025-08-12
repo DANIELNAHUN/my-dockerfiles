@@ -7,6 +7,8 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SEQ_FIRSTRUN_ADMINPASSWORD=MyP@ssw0rd!!
+      - SEQ_FIRSTRUN_ADMINUSERNAME=seqadmin
+      - SEQ_METASTORE_POSTGRES_CONNECTIONSTRING="Host=postgres;Username=admindb;Password=MyP@ssw0rd!!;Database=seqlog"
     ports:
       - "5341:5341"
       - "8080:80"
