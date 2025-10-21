@@ -4,7 +4,7 @@ services:
     image: mcr.microsoft.com/mssql/server
     container_name: sql-server
     environment:
-      SA_PASSWORD: '101299...'
+      SA_PASSWORD: 'Dncf$101299..'
       ACCEPT_EULA: Y
     ports:
       - "1433:1433"
