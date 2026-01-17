@@ -10,6 +10,7 @@ services:
       MYSQL_USER: "dcalcina"
       MYSQL_PASSWORD: "101299"
       MYSQL_DATABASE: "example_dc"
+      TZ: "America/Lima"
     command:
       - mysqld
     ports:
