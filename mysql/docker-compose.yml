@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "101299"
+      MYSQL_USER: "dcalcina"
+      MYSQL_PASSWORD: "101299"
+      MYSQL_DATABASE: "wordpress"
+      TZ: "America/Lima"
+    command:
+      - mysqld
+    ports:
+      - '3306:3306'
+    volumes:
+      - mydb:/var/lib/mysql
+    networks:
+      - shared-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=mysql
+    expose:
+      - 80
+    ports:
+      - 8081:80
+    depends_on:
+      - mysql
+    networks:
+      - shared-network
+
+volumes:
+  mydb:
+
+networks:
+  shared-network:
+    name: shared-network

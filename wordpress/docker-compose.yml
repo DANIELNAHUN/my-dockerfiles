@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: unless-stopped
+    environment:
+       WORDPRESS_DB_HOST: mysql:3306
+       WORDPRESS_DB_NAME: wordpress
+       WORDPRESS_DB_USER: "dcalcina"
+       WORDPRESS_DB_PASSWORD: "101299"
+       WORDPRESS_CONFIG_EXTRA: |
+          define('WP_MEMORY_LIMIT', '256M');
+    ports:
+      - "8080:80"
+    volumes:
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:z
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    name: shared-network
+    external: true
