@@ -14,7 +14,7 @@ services:
     command:
       - mysqld
     ports:
-      - '3306:3306'
+      - "${MYSQL_PORT}:3306"
     volumes:
       - mydb:/var/lib/mysql
     networks:
