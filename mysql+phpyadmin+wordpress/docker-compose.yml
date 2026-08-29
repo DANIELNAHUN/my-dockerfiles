@@ -6,10 +6,10 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: "101299"
-      MYSQL_USER: "dcalcina"
-      MYSQL_PASSWORD: "101299"
-      MYSQL_DATABASE: "example_dc"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
       TZ: "America/Lima"
     command:
       - mysqld
@@ -38,8 +38,8 @@ services:
     environment:
        WORDPRESS_DB_HOST: mysql:3306
        WORDPRESS_DB_NAME: wordpress
-       WORDPRESS_DB_USER: "root"
-       WORDPRESS_DB_PASSWORD: "101299"
+       WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+       WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
        WORDPRESS_CONFIG_EXTRA: |
           define('WP_MEMORY_LIMIT', '256M');
           define('UPLOAD_MAX_FILESIZE', '128M');

@@ -25,10 +25,10 @@ services:
     image: mariadb:10.5
     container_name: osticket_db
     environment:
-      MYSQL_ROOT_PASSWORD: 101299
-      MYSQL_DATABASE: osticket
-      MYSQL_USER: dcalcina
-      MYSQL_PASSWORD: 101299
+       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+       MYSQL_DATABASE: ${MYSQL_DATABASE}
+       MYSQL_USER: ${MYSQL_USER}
+       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
 

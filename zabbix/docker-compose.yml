@@ -7,7 +7,7 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: "c4bl3cl5b"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     ports:
       - '3306:3306'
     volumes:
@@ -38,10 +38,10 @@ services:
       - mysql
     environment:
       DB_SERVER_HOST: mysql
-      MYSQL_DATABASE: "zabbix"
-      MYSQL_USER: "root"
-      MYSQL_PASSWORD: "c4bl3cl5b"
-      MYSQL_ROOT_PASSWORD: "c4bl3cl5b"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       ZBX_JAVAGATEWAY: "zabbix-java-gateway"
     ports:
       - "10051:10051"
@@ -53,10 +53,10 @@ services:
     environment:
       ZBX_SERVER_HOST: "zabbix-server-mysql"
       DB_SERVER_HOST: mysql
-      MYSQL_DATABASE: "zabbix"
-      MYSQL_USER: "root"
-      MYSQL_PASSWORD: "c4bl3cl5b"
-      MYSQL_ROOT_PASSWORD: "c4bl3cl5b"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     ports:
       - "8080:8080"
     restart: unless-stopped

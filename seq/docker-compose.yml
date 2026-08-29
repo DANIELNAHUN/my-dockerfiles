@@ -6,9 +6,9 @@ services:
     container_name: seq
     environment:
       - ACCEPT_EULA=Y
-      - SEQ_FIRSTRUN_ADMINPASSWORD=MyP@ssw0rd!!
-      - SEQ_FIRSTRUN_ADMINUSERNAME=seqadmin
-      - SEQ_METASTORE_POSTGRES_CONNECTIONSTRING="Host=postgres;Username=admindb;Password=MyP@ssw0rd!!;Database=seqlog"
+       - SEQ_FIRSTRUN_ADMINPASSWORD=${SEQ_FIRSTRUN_ADMINPASSWORD}
+       - SEQ_FIRSTRUN_ADMINUSERNAME=${SEQ_FIRSTRUN_ADMINUSERNAME}
+       - SEQ_METASTORE_POSTGRES_CONNECTIONSTRING=${SEQ_METASTORE_POSTGRES_CONNECTIONSTRING}
     ports:
       - "5341:5341"
       - "8080:80"

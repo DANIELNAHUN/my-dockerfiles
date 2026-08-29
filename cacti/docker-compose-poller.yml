@@ -11,16 +11,16 @@ services:
       - "8443:443"
     environment:
       - DB_NAME=cacti_poller
-      - DB_USER=cactipolleruser
-      - DB_PASS=cactipollerpassword
-      - DB_HOST="192.168.18.231"
+       - DB_USER=${CACTI_POLLER_DB_USER}
+       - DB_PASS=${CACTI_POLLER_DB_PASS}
+       - DB_HOST=${CACTI_REMOTE_DB_HOST}
       - DB_PORT=3306
       - RDB_NAME=cacti_master
-      - RDB_USER=cactiuser
-      - RDB_PASS=cactipassword
-      - RDB_HOST="192.168.18.231"
+       - RDB_USER=${CACTI_DB_USER}
+       - RDB_PASS=${CACTI_DB_PASS}
+       - RDB_HOST=${CACTI_REMOTE_DB_HOST}
       - RDB_PORT=3306
-      - DB_ROOT_PASS=101299
+       - DB_ROOT_PASS=${CACTI_POLLER_DB_ROOT_PASS}
       - REMOTE_POLLER=1
       - INITIALIZE_DB=1
       - TZ=America/Los_Angeles
